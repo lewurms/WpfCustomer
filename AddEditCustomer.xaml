@@ -1,0 +1,31 @@
+﻿<Window x:Class="WpfApp2Test2.AddEditCustomer"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp2Test2"
+        mc:Ignorable="d"
+        Title="AddEditCustomer" Height="400" Width="800">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
+            <Label Content="Name"></Label>
+            <TextBox x:Name="InputName" Text="{Binding Beispiel}" Width="150" Margin="5" ToolTip="Hier Name eingeben"/>
+            <Label Content="Email"/>
+            <TextBox x:Name="InputMail" Text="{Binding Mail}" Width="150" Margin="5" ToolTip="Hier Email eingeben"/>
+
+
+            <Button Content="Speichern" Command="{Binding SaveCustomerCommand}" Width="100" Margin="5" />
+            <Button Content="Abbrechen" Command="{Binding CancelCommand}" Width="100" Margin="5"/>
+
+        </StackPanel>
+
+        <Label Grid.Row="2" Content="{Binding ErrorMessage}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Red" FontSize="15"/>
+    </Grid>
+</Window>
