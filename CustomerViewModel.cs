@@ -117,8 +117,8 @@ namespace WpfApp2Test2
         // Löscht den ausgewählten Eintrag
         private ICommand _deleteCustomerCommand;
 
-        private JsonLoader jsonLoader;
-        private XmlLoader xmlLoader;
+        public JsonLoader jsonLoader;
+        public XmlLoader xmlLoader;
 
         #endregion
 
@@ -236,6 +236,9 @@ namespace WpfApp2Test2
             timer.Start();
 
         }
+
+
+
 
         #endregion
 
