@@ -5,25 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp2Test2"
         mc:Ignorable="d"
-        Title="AddEditCustomer" Height="400" Width="800">
+        Title="Editiere" Height="120" Width="500">
     <Grid Margin="10">
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <!--nicht ganz so richtige, leichte Variante mit Variable-->
-        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
+        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
             <Label Content="Name"></Label>
             <TextBox x:Name="InputName" Text="{Binding Name}" Width="150" Margin="5" ToolTip="Hier Name eingeben"/>
             <Label Content="Email"/>
             <TextBox x:Name="InputMail" Text="{Binding Email}" Width="150" Margin="5" ToolTip="Hier Email eingeben"/>
+        </StackPanel>
 
-
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
             <Button Content="Speichern" Command="{Binding SaveCustomerCommand}" Width="100" Margin="5" />
             <Button Content="Abbrechen" Command="{Binding CancelCommand}" Width="100" Margin="5"/>
-
         </StackPanel>
 
         <!--richtige, schwere Variante Mit Referenz benutze es nie-->

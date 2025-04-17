@@ -13,17 +13,18 @@ namespace WpfApp2Test2
             InitializeComponent();
         }
 
-        private AddEditViewModel viewModel = null;
+        private AddEditCustomerViewModel viewModel = null;
+
         public AddEditCustomer(Customer customer)
         {
-            viewModel = new AddEditViewModel(customer);
+            viewModel = new AddEditCustomerViewModel(customer);
             viewModel.closeAction += OnCloseWindow;
             this.DataContext = viewModel;
             InitializeComponent();
 
         }
 
-        private void OnCloseWindow(Customer customer)
+        private void OnCloseWindow()
         {
             viewModel.closeAction -= OnCloseWindow;
             this.Close();

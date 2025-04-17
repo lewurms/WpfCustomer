@@ -5,6 +5,7 @@ using System.Timers;
 using System.Windows.Input;
 using WpfApp2Test2.LoaderService;
 using WpfApp2Test2.Models;
+using WpfApp2Test2.Repository;
 
 namespace WpfApp2Test2
 {
@@ -12,13 +13,8 @@ namespace WpfApp2Test2
     {
         public CustomerViewModel()
         {
-            this.jsonLoader = new();
-            this.xmlLoader = new();
-
-            this.LoadDatas(LoadType.XML);
-
+            this.Customers = this.customersRepository.GetCustomer();
         }
-
 
         #region Attribute
 
@@ -28,6 +24,7 @@ namespace WpfApp2Test2
         public ObservableCollection<Customer> Customers { set; get; } = new();
 
         private Customer _selectedCustomer;
+        private CustomersRepository customersRepository { get { return CustomersRepository.Instance; } }
 
         public Customer SelectedCustomer
         {
@@ -111,80 +108,34 @@ namespace WpfApp2Test2
         // Löscht den ausgewählten Eintrag
         private ICommand _deleteCustomerCommand;
 
-        public JsonLoader jsonLoader;
-        public XmlLoader xmlLoader;
 
         #endregion
 
         #region Methoden
-
-        public void LoadDatas(LoadType type)
-        {
-            if (type == LoadType.Json)
-            {
-                #region Json
-
-                var loadedDatas = this.jsonLoader.LoadData(); //hier daten der Liste "zuweisen"!
-
-                if (loadedDatas.Item1 && loadedDatas.customers != null && loadedDatas.customers.Count >= 1)
-                {
-                    // = new ObservableCollection<DEIN_TYPE>(DEINE_PARAMETER);
-                    this.Customers = new ObservableCollection<Customer>(loadedDatas.customers);
-                }
-
-                #endregion
-            }
-            else if (type == LoadType.XML)
-            {
-                #region Xml
-                var loadedDatas = this.xmlLoader.LoadData();
-
-                if (loadedDatas.Item1 && loadedDatas.customers != null && loadedDatas.customers.Count >= 1)
-                {
-                    this.Customers = new ObservableCollection<Customer>(loadedDatas.customers);
-                }
-
-                #endregion
-            }
-            else if (type == LoadType.Sql)
-            {
-                #region SQL
-
-
-
-                #endregion
-            }
-        }
-
-        public void SaveDatas()
-        {
-            this.jsonLoader.SaveData(this.Customers);
-            this.xmlLoader.SaveData(this.Customers);
-        }
 
         public void EditCustomer()
         {
             AddEditCustomer addEditCustomer = new AddEditCustomer(this.SelectedCustomer);
             addEditCustomer.ShowDialog();
 
-            this.SaveDatas();
+            this.customersRepository.SaveDatas();
         }
 
         public void DeleteCustomer()
         {
-            if (SelectedCustomer != null)
+            if (this.SelectedCustomer != null)
             {
-                Customers.Remove(SelectedCustomer);
-                SelectedCustomer = null;
-
-                this.SaveDatas();
+                this.customersRepository.Delete(this.SelectedCustomer);
+                this.customersRepository.SaveDatas();
             }
         }
 
         public void AddCustomer()
         {
+            #region Prüfe Nutzer Input
+
             Customer customers = new Customer();
-            customers.Id = Customers.Count + 1;
+            customers.Id = this.Customers.Count + 1;
             customers.Name = this.Beispiel;//"Lisa";
             customers.Email = this.Mail;//"lisa@outlook.com"
 
@@ -201,10 +152,13 @@ namespace WpfApp2Test2
                 return;
             }
 
-
-            Customers.Add(customers);
             ShowToast("Kunde erfolgreich hinzugefügt.");
-            this.SaveDatas();
+
+            #endregion
+
+            this.customersRepository.Add(this.Customers.Count + 1, this.Beispiel, this.Mail);
+            //this.customersRepository.Add(customers);
+            this.customersRepository.SaveDatas();
         }
 
         //Prüfe Name und Email auf Korrektheit der Eingabe
@@ -268,8 +222,6 @@ namespace WpfApp2Test2
             timer.Start();
 
         }
-
-
 
 
         #endregion
