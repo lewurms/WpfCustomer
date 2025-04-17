@@ -9,5 +9,8 @@ namespace WpfApp2Test2.LoaderService
     public class TableConstants
     {
         public static string NAME = "NAME";
+        
     }
+
+    
 }

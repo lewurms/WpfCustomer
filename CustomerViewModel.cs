@@ -13,10 +13,12 @@ namespace WpfApp2Test2
         {
             this.jsonLoader = new();
             this.xmlLoader = new();
-            var loadedDatas = this.jsonLoader.LoadData(); //hier daten der Liste "zuweisen"!
+
+            var loadedDatas = this.xmlLoader.LoadData(); 
+
             if (loadedDatas.Item1 && loadedDatas.customers != null && loadedDatas.customers.Count >= 1)
             {
-                            // = new ObservableCollection<DEIN_TYPE>(DEINE_PARAMETER);
+                // = new ObservableCollection<DEIN_TYPE>(DEINE_PARAMETER);
                 this.Customers = new ObservableCollection<Customer>(loadedDatas.customers);
             }
         }
@@ -123,6 +125,44 @@ namespace WpfApp2Test2
         #endregion
 
         #region Methoden
+
+        public void LoadDatas(LoadType type)
+        {
+            if (type == LoadType.Json)
+            {
+                #region Json
+
+                var loadedDatas = this.jsonLoader.LoadData(); //hier daten der Liste "zuweisen"!
+                
+                if (loadedDatas.Item1 && loadedDatas.customers != null && loadedDatas.customers.Count >= 1)
+                {
+                    // = new ObservableCollection<DEIN_TYPE>(DEINE_PARAMETER);
+                    this.Customers = new ObservableCollection<Customer>(loadedDatas.customers);
+                }
+
+                #endregion
+            }
+            else if (type == LoadType.XML)
+            {
+                #region Xml
+                var loadedDatas = this.xmlLoader.LoadData();
+
+                if (loadedDatas.Item1 && loadedDatas.customers != null && loadedDatas.customers.Count >= 1)
+                {
+                    this.Customers = new ObservableCollection<Customer>(loadedDatas.customers);
+                }
+
+                #endregion
+            }
+            else if (type ==  LoadType.Sql)
+            {
+                #region SQL
+
+
+
+                #endregion
+            }
+        }
 
         public void SaveDatas()
         {

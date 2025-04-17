@@ -51,8 +51,8 @@ namespace WpfApp2Test2.LoaderService
                     XElement xmlElementName = new XElement(TableConstants.NAME, customer.Name);
                     customerAttributes.Add(xmlElementName);
 
-                    XElement xmlElementName2 = new XElement("Name2", customer.Name);
-                    customerAttributes.Add(xmlElementName2);
+                    XElement xmlElementMail = new XElement("Mail", customer.Email);
+                    customerAttributes.Add(xmlElementMail);
 
                     XElement xElementParent = new("Customer", customerAttributes);
                     xmlCustomers.Add(xElementParent);

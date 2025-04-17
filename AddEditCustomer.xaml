@@ -26,7 +26,7 @@
 
         </StackPanel>
 
-        <!--richtige, schwere Variante Mit Referenz-->
+        <!--richtige, schwere Variante Mit Referenz benutze es nie-->
         <!--<StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
             <Label Content="Name"></Label>
             <TextBox x:Name="InputName" Text="{Binding Path=Customer.Name, FallbackValue='Name nicht vorhanden'}" Width="150" Margin="5" ToolTip="Hier Name eingeben"/>
