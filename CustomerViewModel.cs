@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Timers;
@@ -14,14 +15,10 @@ namespace WpfApp2Test2
             this.jsonLoader = new();
             this.xmlLoader = new();
 
-            var loadedDatas = this.xmlLoader.LoadData(); 
-
-            if (loadedDatas.Item1 && loadedDatas.customers != null && loadedDatas.customers.Count >= 1)
-            {
-                // = new ObservableCollection<DEIN_TYPE>(DEINE_PARAMETER);
-                this.Customers = new ObservableCollection<Customer>(loadedDatas.customers);
-            }
+            this.LoadDatas(LoadType.XML);
+            
         }
+
 
         #region Attribute
 
@@ -133,7 +130,7 @@ namespace WpfApp2Test2
                 #region Json
 
                 var loadedDatas = this.jsonLoader.LoadData(); //hier daten der Liste "zuweisen"!
-                
+
                 if (loadedDatas.Item1 && loadedDatas.customers != null && loadedDatas.customers.Count >= 1)
                 {
                     // = new ObservableCollection<DEIN_TYPE>(DEINE_PARAMETER);
@@ -154,7 +151,7 @@ namespace WpfApp2Test2
 
                 #endregion
             }
-            else if (type ==  LoadType.Sql)
+            else if (type == LoadType.Sql)
             {
                 #region SQL
 
