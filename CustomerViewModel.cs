@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Timers;
 using System.Windows.Input;
 using WpfApp2Test2.LoaderService;
+using WpfApp2Test2.Models;
 
 namespace WpfApp2Test2
 {
@@ -16,16 +16,11 @@ namespace WpfApp2Test2
             this.xmlLoader = new();
 
             this.LoadDatas(LoadType.XML);
-            
+
         }
 
 
         #region Attribute
-
-        /// <summary>
-        /// Wert der angibt wie viele Test Daten erstellt werden sollen.
-        /// </summary>
-        private const int TEST_DATAS_COUNT = 10;
 
         public event PropertyChangedEventHandler PropertyChanged;
 

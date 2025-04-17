@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Windows.Input;
+using WpfApp2Test2.Models;
 
 namespace WpfApp2Test2
 {

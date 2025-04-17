@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text.Json;
-using System.Xml;
 using System.Xml.Linq;
+using WpfApp2Test2.Models;
 using static System.Environment;
 
 namespace WpfApp2Test2.LoaderService
@@ -56,7 +55,7 @@ namespace WpfApp2Test2.LoaderService
 
                 return (true, customers);
             }
-            catch(Exception ex) 
+            catch (Exception ex)
             {
                 return (false, new List<Customer>());
             }
@@ -84,7 +83,7 @@ namespace WpfApp2Test2.LoaderService
             {
                 string? xmlString = null;
 
-                
+
                 List<XElement> xmlCustomers = new();
 
                 foreach (Customer customer in customers)

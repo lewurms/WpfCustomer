@@ -1,5 +1,5 @@
-﻿using System.Runtime.CompilerServices;
-using System.Windows;
+﻿using System.Windows;
+using WpfApp2Test2.Models;
 
 namespace WpfApp2Test2
 {
@@ -20,7 +20,7 @@ namespace WpfApp2Test2
             viewModel.closeAction += OnCloseWindow;
             this.DataContext = viewModel;
             InitializeComponent();
-            
+
         }
 
         private void OnCloseWindow(Customer customer)
